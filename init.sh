@@ -1,5 +1,7 @@
 #!/bin/bash 
 DIR=$(dirname ${BASH_SOURCE[0]})
+echo $(hostname -I | cut -d\  -f1) $(hostname) | sudo tee -a /etc/hosts
+
 sudo apt update
 sudo apt full-upgrade -y
 sudo apt install -y \
@@ -40,7 +42,7 @@ cp $DIR/zprofile $HOME/.zprofile
 cp $DIR/ssh/rc $HOME/.ssh/rc
 
 # GPU monitoring
-nvidia-smi -L >/dev/null 2>&1 && sudo pip3 install --upgrade nvitop
+[ ! -z "lspci | grep -i nvidia" ] && sudo pip3 install --upgrade nvitop
 
 # Prompt the user to enter their email
 read -p "Enter your email: " email
