@@ -27,13 +27,13 @@ sudo pip3 install --upgrade \
     streamlit_drawable_canvas
 
 # zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh) -y"
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-sed -i $'s/plugins=(git)/plugins=(\\\n\tgit\\\n\tzsh-syntax-highlighting\\\n\tzsh-autosuggestions)/' ~/.zshrc
+sed -i $'s/plugins=(git)/plugins=(\\\n\tgit\\\n\tzsh-syntax-highlighting\\\n\tzsh-autosuggestions)\\\n/' ~/.zshrc
 
 # dotfiles
-mkdir $HOME/.ssh
+mkdir -p $HOME/.ssh
 cp $DIR/tmux.conf $HOME/.tmux.conf
 cp $DIR/profile-full-zsh $HOME/.profile
 cp $DIR/zprofile $HOME/.zprofile
