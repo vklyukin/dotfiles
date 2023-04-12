@@ -3,10 +3,9 @@ DIR=$(dirname ${BASH_SOURCE[0]})
 echo $(hostname -I | cut -d\  -f1) $(hostname) | sudo tee -a /etc/hosts
 
 sudo apt update
-sudo apt full-upgrade -y
+# sudo apt full-upgrade -y
 sudo apt install -y \
     git-lfs \
-    libgl-dev \
     python3-pip \
     tmux \
     vim \
@@ -16,8 +15,7 @@ sudo apt-get update
 sudo apt-get install \
     ca-certificates \
     curl \
-    gnupg \
-    lsb-release
+    gnupg
 sudo mkdir -m 0755 -p /etc/apt/keyrings
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 echo \
@@ -27,8 +25,6 @@ sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 sudo apt autoremove
 sudo pip3 install --upgrade pip
-# Sometimes we have problem with TF if we have old fllatbuffers
-sudo pip3 uninstall flatbuffers
 # PyYAML has problem with deleting cause by distutils
 sudo pip3 install --upgrade --ignore-installed PyYAML
 sudo pip3 install --upgrade \
@@ -39,10 +35,10 @@ sudo pip3 install --upgrade \
     mypy \
     numpy \
     pylint \
-    streamlit \
-    streamlit_drawable_canvas
+    streamlit
 
 # zsh
+export RUNZSH=no
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh) -y"
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
